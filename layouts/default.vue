@@ -58,6 +58,7 @@
   function hasElement(className) {
     return document.getElementsByClassName(className).length > 0;
   }
+
   function initScrollbar(className) {
     if (hasElement(className)) {
       new PerfectScrollbar(`.${className}`);
@@ -68,10 +69,12 @@
       }, 100);
     }
   }
+
   import DashboardNavbar from '@/components/Layout/DashboardNavbar.vue';
   import ContentFooter from '@/components/Layout/ContentFooter.vue';
   import DashboardContent from '@/components/Layout/Content.vue';
   import { SlideYDownTransition, ZoomCenterTransition } from 'vue2-transitions';
+
   export default {
     components: {
       DashboardNavbar,
@@ -105,6 +108,7 @@
           initScrollbar('sidebar');
           initScrollbar('main-panel');
           initScrollbar('sidebar-wrapper');
+
           docClasses.add('perfect-scrollbar-on');
         } else {
           docClasses.add('perfect-scrollbar-off');
@@ -127,9 +131,11 @@
       opacity: 1;
     }
   }
+
   .main-panel .zoomIn {
     animation-name: zoomIn95;
   }
+
   @keyframes zoomOut95 {
     from {
       opacity: 1;
@@ -139,9 +145,8 @@
       transform: scale3d($scaleSize, $scaleSize, $scaleSize);
     }
   }
+
   .main-panel .zoomOut {
     animation-name: zoomOut95;
   }
 </style>
-© 2021 GitHub, Inc.
-Terms

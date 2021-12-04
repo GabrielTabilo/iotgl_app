@@ -1,8 +1,8 @@
 {
-  "name": "iotgl_app",
+  "name": "iot_gl_app",
   "version": "1.0.0",
   "description": "IOT_GL_APP",
-  "author": "GabrielTabilo",
+  "author": "IoTicos.org",
   "scripts": {
     "dev": "nuxt",
     "devn": "nodemon api/index.js --exec babel-node",
@@ -47,6 +47,5 @@
     "babel-plugin-component": "^1.1.1",
     "node-sass": "^4.12.0",
     "sass-loader": "^7.3.1"
-
   }
 }

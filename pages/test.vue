@@ -1,5 +1,7 @@
 <template>
-  <div>
-    Ready!
-  </div>
+    
+    <div>
+        Ready!
+    </div>
+
 </template>
