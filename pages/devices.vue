@@ -1,67 +1,107 @@
 <template>
   <div>
-    <card>
-      <div slot="header">
-        <h4 class="card-title">Add new Device</h4>
-      </div>
 
-      <div class="row">
-        <div class="col-4">
-          <base-input
-            label="Device Name"
-            type="text"
-            placeholder="Ex: Home, Office..."
-          >
-          </base-input>
+        <!-- FORM ADD DEVICE -->
+    <div class="row">
+      <card>
+        <div slot="header">
+          <h4 class="card-title">Add new Device</h4>
         </div>
 
-        <div class="col-4">
-          <base-input
-            label="Device Id"
-            type="text"
-            placeholder="Ex: 7777-8888"
-          >
-          </base-input>
+        <div class="row">
+          <div class="col-4">
+            <base-input
+              label="Device Name"
+              type="text"
+              placeholder="Ex: Home, Office..."
+            >
+            </base-input>
+          </div>
+
+          <div class="col-4">
+            <base-input
+              label="Device Id"
+              type="text"
+              placeholder="Ex: 7777-8888"
+            >
+            </base-input>
+          </div>
+
+          <div class="col-4">
+            <slot name="label">
+              <label> Template </label>
+            </slot>
+
+            <el-select
+              value="1"
+              placeholder="Select Template"
+              class="select-info"
+              style="width:100%"
+            >
+              <el-option
+                class="text-dark"
+                value="Template 1"
+                label="Template 1"
+              ></el-option>
+
+              <el-option
+                class="text-dark"
+                value="Template 2"
+                label="Template 2"
+              ></el-option>
+
+              <el-option
+                class="text-dark"
+                value="Template 3"
+                label="Template 3"
+              ></el-option>
+            </el-select>
+          </div>
         </div>
 
-        <div class="col-4">
-          <slot name="label">
-            <label> Template </label>
-          </slot>
-
-          <el-select
-            value="1"
-            placeholder="Select Template"
-            class="select-primary"
-            style="width:100%"
-          >
-            <el-option
-              class="text-dark"
-              value="Template 1"
-              label="Template 1"
-            ></el-option>
-
-            <el-option
-              class="text-dark"
-              value="Template 2"
-              label="Template 2"
-            ></el-option>
-
-            <el-option
-              class="text-dark"
-              value="Template 3"
-              label="Template 3"
-            ></el-option>
-          </el-select>
+        <div class="row pull-right">
+          <div class="col-12">
+            <base-button type="info" class="mb-3" size="lg">Add</base-button>
+          </div>
         </div>
-      </div>
+      </card>
 
-      <div class="row pull-right">
-        <div class="col-12">
-          <base-button type="primary" class="mb-3" size="lg">Add</base-button>
+    </div>
+        <!-- DEVICES TABLE -->
+    <div class="row">
+      <card>
+        <div slot="header">
+          <h4 class="card-title">Devices</h4>
         </div>
-      </div>
-    </card>
+        <el-table :data="devices">
+          <el-table-column label="#" min-width="50" align="center">
+            <div slot-scope="{row, $index}">
+            {{$index + 1}}
+            </div>
+          </el-table-column>
+
+          <el-table-column prop="name" label="Name"></el-table-column>
+          <el-table-column prop="dId" label="Device Id"></el-table-column>
+          <el-table-column prop="templateName" label="Template"></el-table-column>
+          <el-table-column label="Actions">
+
+            <div slot-scope="{row, $index}">
+            {{row}}
+            <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
+              <base-button type="danger" icon size="sm" class= "btn-link" @click="deleteDevice(row)">
+                <i class="tim-icons icon-simple-remove"></i>
+              </base-button>
+            </el-tooltip>
+            </div>
+
+          </el-table-column>
+        </el-table>
+      </card>
+
+
+    </div>
+
+
   </div>
 </template>
 
@@ -76,5 +116,34 @@ export default {
     [Option.name]: Option,
     [Select.name]: Select
   },
+  data(){
+    return{
+      devices: [
+        {
+          name: "Home",
+          dId: "8888",
+          templateName: "Power Sensor",
+          templateId: "9809183208130012938"
+        },
+                {
+          name: "Office",
+          dId: "9999",
+          templateName: "Power Sensor",
+          templateId: "1287398107381097333"
+        },
+                {
+          name: "Farm",
+          dId: "7777",
+          templateName: "Power Sensor",
+          templateId: "5912830912830912834"
+        }
+      ]
+    };
+ },
+  methods: {
+    deleteDevice(device){
+      alert("DELETING " + device.name)
+    }
+  }
 };
 </script>
