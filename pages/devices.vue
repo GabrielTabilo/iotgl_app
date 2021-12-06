@@ -1,6 +1,5 @@
 <template>
   <div>
-
         <!-- FORM ADD DEVICE -->
     <div class="row">
       <card>
@@ -86,22 +85,22 @@
           <el-table-column label="Actions">
 
             <div slot-scope="{row, $index}">
-            {{row}}
+
+            <el-tooltip content="Database Saver">
+              <base-switch @click="updateSaverRulesStatus($index)" :value="row.saverRule" type="info" on-text="On" off-text="Off"></base-switch>
+            </el-tooltip>
+
+            <!-- {{row}} -->
             <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
               <base-button type="danger" icon size="sm" class= "btn-link" @click="deleteDevice(row)">
                 <i class="tim-icons icon-simple-remove"></i>
               </base-button>
             </el-tooltip>
             </div>
-
           </el-table-column>
         </el-table>
       </card>
-
-
     </div>
-
-
   </div>
 </template>
 
@@ -123,19 +122,22 @@ export default {
           name: "Home",
           dId: "8888",
           templateName: "Power Sensor",
-          templateId: "9809183208130012938"
+          templateId: "9809183208130012938",
+          saverRule: false
         },
                 {
           name: "Office",
           dId: "9999",
           templateName: "Power Sensor",
-          templateId: "1287398107381097333"
+          templateId: "1287398107381097333",
+          saverRule: true
         },
                 {
           name: "Farm",
           dId: "7777",
           templateName: "Power Sensor",
-          templateId: "5912830912830912834"
+          templateId: "5912830912830912834",
+          saverRule: false
         }
       ]
     };
@@ -143,6 +145,9 @@ export default {
   methods: {
     deleteDevice(device){
       alert("DELETING " + device.name)
+    },
+    updateSaverRulesStatus(index){
+      this.devices[index].saverRule = !this.devices[index].saverRule
     }
   }
 };
