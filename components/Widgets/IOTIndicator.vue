@@ -11,7 +11,7 @@
 
 <script>
 export default {
-  //props: ['config'],
+  props: ['config'],
   data() {
     return {
       value:true,
@@ -34,7 +34,10 @@ export default {
     };
   },
   mounted(){
-    this.$nuxt.$on('widget-topic', this.processReceivedData)
+    //userId/dId/uniquestr/sdata
+    const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
+    console.log(topic);
+    this.$nuxt.$on(topic, this.processReceivedData)
   },
   methods: {
     processReceivedData(data){
@@ -62,6 +65,4 @@ export default {
     }
   }
 };
-
-//userId/dId/uniquestr/sdata
 </script>
