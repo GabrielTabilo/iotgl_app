@@ -84,17 +84,21 @@
           <el-table-column prop="templateName" label="Template"></el-table-column>
           <el-table-column label="Actions">
             <div slot-scope="{row, $index}">
-              {{row.saverRule}}
-            <el-tooltip content="Database Saver">
-              <base-switch @click="updateSaverRulesStatus($index)" :value="row.saverRule" type="info" on-text="On" off-text="Off"></base-switch>
-            </el-tooltip>
 
-            <!-- {{row}} -->
-            <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
-              <base-button type="danger" icon size="sm" class= "btn-link" @click="deleteDevice(row)">
-                <i class="tim-icons icon-simple-remove"></i>
-              </base-button>
-            </el-tooltip>
+              <el-tooltip content="Saver Status Indicator" style="margin-right:10px">
+                <i class="fas fa-database " :class="{'text-success' : row.saverRule, 'text-dark' : !row.saverRule}" ></i>
+              </el-tooltip>
+
+              <el-tooltip content="Database Saver">
+                <base-switch @click="updateSaverRulesStatus($index)" :value="row.saverRule" type="info" on-text="On" off-text="Off"></base-switch>
+              </el-tooltip>
+
+              <!-- {{row}} -->
+              <el-tooltip content="Delete" effect="light" :open-delay="300" placement="top">
+                <base-button type="danger" icon size="sm" class= "btn-link" @click="deleteDevice(row)">
+                  <i class="tim-icons icon-simple-remove"></i>
+                </base-button>
+              </el-tooltip>
             </div>
           </el-table-column>
         </el-table>
