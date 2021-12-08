@@ -14,31 +14,21 @@ export default {
   props: ['config'],
   data() {
     return {
-      value:true,
-      config: {
-        userId: "userid",
-        selectedDevice: {
-          name: "Home",
-          dId: "8888",
-          templateName: "Power Sensor",
-          templateId: "984237562348756ldksjfh",
-          saverRule: false
-        },
-        variableFullName: "Pump",
-        variable: "uniquestr",
-        icon: "fa-sun",
-        column: "col-6",
-        widget: "indicator",
-        class: "success"
+      value: false,
       }
-    };
-  },
+    },
+
   mounted(){
     //userId/dId/uniquestr/sdata
     const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
     console.log(topic);
     this.$nuxt.$on(topic, this.processReceivedData)
   },
+
+  beforeDestroy(){
+    this.$nuxt.$off(this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata")
+  },
+
   methods: {
     processReceivedData(data){
         console.log("received");
