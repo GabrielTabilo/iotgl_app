@@ -83,9 +83,8 @@
           <el-table-column prop="dId" label="Device Id"></el-table-column>
           <el-table-column prop="templateName" label="Template"></el-table-column>
           <el-table-column label="Actions">
-
             <div slot-scope="{row, $index}">
-
+              {{row.saverRule}}
             <el-tooltip content="Database Saver">
               <base-switch @click="updateSaverRulesStatus($index)" :value="row.saverRule" type="info" on-text="On" off-text="Off"></base-switch>
             </el-tooltip>
@@ -147,6 +146,7 @@ export default {
       alert("DELETING " + device.name)
     },
     updateSaverRulesStatus(index){
+      console.log(index)
       this.devices[index].saverRule = !this.devices[index].saverRule
     }
   }
