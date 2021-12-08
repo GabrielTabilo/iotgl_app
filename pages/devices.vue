@@ -98,8 +98,10 @@
             </div>
           </el-table-column>
         </el-table>
+
       </card>
     </div>
+    <Json :value="devices"></Json>
   </div>
 </template>
 
