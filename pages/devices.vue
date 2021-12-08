@@ -105,7 +105,7 @@
 
       </card>
     </div>
-    <Json :value="devices"></Json>
+    <json-viewer :value="devices"></json-viewer>
   </div>
 </template>
 

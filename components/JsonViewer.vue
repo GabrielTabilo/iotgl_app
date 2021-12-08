@@ -27,7 +27,7 @@ pre {
 
 <script>
 export default {
-  name: "Json",
+  name: "json-viewer",
   props: ["value"],
   data() {
     return {
