@@ -1,5 +1,25 @@
 <template>
   <div>
     <iot-indicator></iot-indicator>
+    <button @click="sendData()">SEND</button>
   </div>
 </template>
+
+<script>
+    export default {
+        data(){
+            return {
+                value: true
+            }
+        },
+        methods: {
+            sendData(){
+                this.value = !this.value;
+                const toSend = {
+                    value: this.value
+                }
+                this.$nuxt.$emit('widget-topic', toSend);
+            }
+        }
+    }
+</script>
