@@ -1,11 +1,16 @@
 <template>
   <card>
     <div slot="header">
-      <h4 class="card-title">{{config.selectedDevice.name}} - {{config.variableFullName}} </h4>
+      <h4 class="card-title">
+        {{ config.selectedDevice.name }} - {{ config.variableFullName }}
+      </h4>
     </div>
 
-    <i class="fa " :class="[config.icon, getIconColorClass()]" style="font-size: 30px"></i>
-
+    <i
+      class="fa "
+      :class="[config.icon, getIconColorClass()]"
+      style="font-size: 30px"
+    ></i>
   </card>
 </template>
 
@@ -14,22 +19,21 @@ export default {
   props: ['config'],
   data() {
     return {
-      value: false,
-      }
-    },
+      value: false
 
+    };
+  },
   mounted(){
-    //userId/dId/uniquestr/sdata
+      //userId/dId/uniquestr/sdata
     const topic = this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata";
     console.log(topic);
     this.$nuxt.$on(topic, this.processReceivedData)
   },
-
   beforeDestroy(){
     this.$nuxt.$off(this.config.userId + "/" + this.config.selectedDevice.dId + "/" + this.config.variable + "/sdata")
   },
-
   methods: {
+
     processReceivedData(data){
         console.log("received");
         console.log(data);
@@ -40,6 +44,7 @@ export default {
       if (!this.value) {
         return "text-dark";
       }
+
       if (this.config.class == "success") {
         return "text-success";
       }
@@ -53,6 +58,9 @@ export default {
         return "text-danger";
       }
     }
+
   }
 };
+
+
 </script>
