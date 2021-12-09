@@ -829,8 +829,6 @@ export default {
     deleteWidget(index){
       this.widgets.splice(index,1);
     },
-
-
     makeid(length) {
       var result = "";
       var characters =
