@@ -5,7 +5,8 @@
   "author": "IoTicos.org",
   "scripts": {
     "dev": "nuxt",
-    "devn": "nodemon api/index.js --exec babel-node",
+    "babel-node": "babel-node --presets=@babel/preset-env",
+    "devn": "nodemon --exec npm run babel-node api/index.js",
     "build": "nuxt build",
     "generate": "nuxt generate",
     "start": "nuxt start"

@@ -1,25 +1,26 @@
 //requires
-const express = require('express');
-const mongoose = require('mongoose');
-const morgan = require('morgan');
-const cors = require('cors');
-const colors = require('colors');
+import express, { json, urlencoded } from 'express';
+import { connect } from 'mongoose';
+import morgan from 'morgan';
+import cors from 'cors';
+import colors from 'colors';
 
 //instances
 const app = express(); //variable que representa a express
 
 //express confiug
 app.use(morgan("tiny")); //instncia para mostrar la salida de cuando alguien llama un endpoint. Tiny es la versión
-app.use(express.json()); //Permite trabajar con JSON en express
-app.use(express.urlencoded({ //traducción a JSON de una forma de trabajar con el URL utilizando "?" y "&", etc.
+app.use(json()); //Permite trabajar con JSON en express
+app.use(urlencoded({ //traducción a JSON de una forma de trabajar con el URL utilizando "?" y "&", etc.
   extended: true
 }));
 app.use(cors()); //Politicas de seguridad esten incluidas.
 
 //express routes
-app.use('/api', require('./routes/devices.js')) // "/api" es el apellido o prefijo de la ruta para los endpoints que se encuentren en "devices.js"
+app.use('/api', require('./routes/devices.js').default) // "/api" es el apellido o prefijo de la ruta para los endpoints que se encuentren en "devices.js"
+app.use('/api', require('./routes/users.js').default)
 
-module.exports = app; //para poder exportar la instancia de express a otrops archivos que administren las rutas de los endoppoints.
+export default app; //para poder exportar la instancia de express a otrops archivos que administren las rutas de los endoppoints.
 //listener
 app.listen(3001, () => {
   console.log("API server listening on port 3001")
@@ -49,7 +50,7 @@ const options = {
 };
 
 try { //intentar
-  mongoose.connect(uri, options).then(
+  connect(uri, options).then(
       () => {
         console.log("\n");
         console.log("*******************************".green);
