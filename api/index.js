@@ -8,7 +8,7 @@ import colors from 'colors';
 //instances
 const app = express(); //variable que representa a express
 
-//express confiug
+//express config
 app.use(morgan("tiny")); //instncia para mostrar la salida de cuando alguien llama un endpoint. Tiny es la versión
 app.use(json()); //Permite trabajar con JSON en express
 app.use(urlencoded({ //traducción a JSON de una forma de trabajar con el URL utilizando "?" y "&", etc.

@@ -7,12 +7,22 @@ import bcrypt from "bcrypt";
 import User from "../models/user.js";
 
 router.get("/new-user", async (req, res) => {
-
-const user = await User.create({
+try {
+  const user = await User.create({
     name: "Benjamin",
-    email: "a@a.com",
+    email: "a@b.com",
     password: "121212"
-});
+  });
+  res.json({"status":"success"});
+}
+
+catch (error) {
+  console.log(error);
+  res.json({"status":"fail"});
+}
+
+
+
 
 });
 
