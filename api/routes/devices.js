@@ -1,9 +1,47 @@
-import { Router } from 'express';
-const router = Router();
+const express = require("express");
+const router = express.Router();
 
-router.get("/testing", (req, res) => { //req: todo lo que entra "requerimientos" --- res: todo lo que sale "respuestas"
-  console.log("Bye IoT")
-  res.send("Hello IoT GL API");
+//req: todo lo que entra "requerimientos" --- res: todo lo que sale "respuestas"
+router.get("/test", (req, res) => {
+
+  console.log(req.query.dId);
+  var toReturn = {
+    status: "success",
+    data: req.query
+  }
+
+  res.json(toReturn);
+
 });
 
-export default router; //exportamos router para que sea considerado por express
+
+ router.post("/test", (req, res) => {
+
+   console.log(req.body.dId);
+
+   var toReturn = {
+     status: "success",
+     data: req.body
+   }
+
+   res.json(toReturn);
+
+});
+
+router.get("/device", (req, res) => {
+
+});
+
+router.post("/device", (req, res) => {
+
+});
+
+router.delete("/device", (req, res) => {
+
+});
+
+router.put("/device", (req, res) => {
+
+});
+
+module.exports = router;; //exportamos router para que sea considerado por express
