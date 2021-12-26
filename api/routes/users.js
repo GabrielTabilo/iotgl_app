@@ -7,7 +7,43 @@ const bcrypt = require("bcrypt");
 import User from "../models/user.js";
 
 //AUTH
-router.post("/register", (req, res) => {
+router.post("/register", async (req, res) => {
+  try {
+
+    const name = req.body.name;
+    const email = req.body.email;
+    const password = req.body.password;
+    const encryptedPassword = bcrypt.hashSync(password, 10);
+
+    const newUser = {
+      name: name,
+      email: email,
+      password: encryptedPassword
+    };
+
+    var user = await User.create(newUser);
+
+    console.log(user);
+
+    const toSend = {
+      status: "success"
+    };
+
+    res.status(200).json(toSend);
+
+  } catch (error) {
+
+      console.log("ERROR - REGISTER ENDPOINT")
+      console.log(error);
+
+      const toSend = {
+        status: "error",
+        error: error
+      };
+
+      res.status(500).json(toSend);
+
+  }
 });
 
 router.post("/login", (req, res) => {
